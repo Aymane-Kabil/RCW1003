@@ -1,11 +1,20 @@
-#afficher le numero de 1 a 10
-for i in range(1,11):
-  print(i)
+from fastapi import FastAPI , HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
-  a =3
-  b =4
-  c = a+b
-  print(c)
+app = FastAPI()
 
-  #test Git
-  3testtt
+@app.get("/")
+async def welcome():
+    try:
+        return{"message":"Hello from RCW 1003"}
+    except Exception as e:
+        print(f'Exception:{e}')
+        raise HTTPException(status_code=500 , detail =str(e))
+    
+@app.get("/test")
+async def bienvenue():
+    try:
+        return{"message":"Hello from serveur"}
+    except Exception as e:
+        print(f'Exception:{e}')
+        raise HTTPException(status_code=500 , detail =str(e))    
